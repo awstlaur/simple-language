@@ -1,10 +1,9 @@
-import parse from "s-expression";
+import Parser from "./parser";
 
-function logParse(input: string): void {
-    console.log(input, parse(input));
+function logParse(program: string): void {
+    const output = JSON.stringify(Parser.parse(program));
+    console.log(program);
+    console.log(output);
 }
 
-logParse("a");
-logParse('(a b "c")');
-logParse("'(a `(b ,c))");
-logParse(")))");
+logParse("(+ 1 2)");

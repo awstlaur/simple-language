@@ -1,7 +1,13 @@
+/* eslint-disable */
 declare module "s-expression" {
-    type SExpr = string | unknown[];
-    type Parse = (stream: string) => SExpr | Error;
-
-    const parse: Parse;
-    export default parse;
+    interface ParseError extends Error {
+        line: number;
+        col: number;
+    }
+    export type SExpression = string | String | SExpression[];
+    function SParse(stream: string): ParseError | SExpression;
+    namespace SParse {
+        var SyntaxError: ErrorConstructor;
+    }
+    export default SParse;
 }
