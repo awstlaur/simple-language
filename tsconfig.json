@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+      "outDir": "./dist/",
+      "sourceMap": true,
+      "module": "es6",
+      "target": "es5",
+      "allowJs": true,
+      "esModuleInterop": true,
+      "baseUrl": ".",
+      "paths": {
+          "s-expression": ["node_modules/s-expression/index.js"]
+      },
+      "noEmitOnError": true,
+      "strict": true,
+      "types": []
+  }
+}
