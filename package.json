@@ -23,7 +23,7 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "main": "node ./dist/index.js",
+    "repl": "node ./dist/repl.js",
     "lint": "eslint . --ext .ts,.js",
     "lintfix": "eslint . --ext .ts,.js --fix",
     "test": "jest",
