@@ -5,6 +5,12 @@ const OPERATION = {
     "*": (a: number, b: number): number => {
         return a * b;
     },
+    "-": (a: number, b: number): number => {
+        return a - b;
+    },
+    "/": (a: number, b: number): number => {
+        return Math.floor(a / b);
+    },
 };
 
 export default class Evaluator {

@@ -1,10 +1,12 @@
 import SParse, { SExpression } from "s-expression";
 
+const OPERATIONS = new Set(["+", "*", "-", "/"]);
+
 function assertOpIsValid(op: SExpression): asserts op is ArithOp {
     if (typeof op !== "string") {
         throw new Error(`Expected operation to be a string, got ${op}`);
     }
-    if (op === "*" || op === "+") {
+    if (OPERATIONS.has(op)) {
         return;
     }
     throw new Error(`Operation "${op}" is invalid`);

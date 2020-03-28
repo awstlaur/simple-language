@@ -1,4 +1,4 @@
-type ArithOp = "+" | "*";
+type ArithOp = "+" | "*" | "-" | "/";
 type ArithExpr =
     | {
           op: ArithOp;

@@ -30,6 +30,22 @@ const TEST_CASES: TestCase[] = [
             },
         },
     },
+    {
+        program: "(- (/ 6 5) (- 4 5))",
+        expectedExpr: {
+            op: "-",
+            lhs: {
+                op: "/",
+                lhs: 6,
+                rhs: 5,
+            },
+            rhs: {
+                op: "-",
+                lhs: 4,
+                rhs: 5,
+            },
+        },
+    },
 ];
 
 const testTable = TEST_CASES.map(({ program, expectedExpr }) => [
@@ -41,7 +57,16 @@ test.each(testTable)('.parse("%s")', (program, expectedExpr) => {
     expect(Parser.parse(program as string)).toMatchObject(expectedExpr);
 });
 
-const ERROR_CASES = ["()", "(0 0)", "(0 0 0 0)", "(+ 1 2 3)", "0", "", "))"];
+const ERROR_CASES = [
+    "()",
+    "(0 0)",
+    "(0 0 0 0)",
+    "(+ 1 2 3)",
+    "0",
+    "",
+    "))",
+    "(invalid_op s d)",
+];
 
 test.each(ERROR_CASES)('Error given "%s"', () => {
     expect(() => Parser.parse("()")).toThrowError();

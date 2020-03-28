@@ -34,6 +34,22 @@ const TEST_CASES: TestCase[] = [
         expr: 4,
         expectedResult: 4,
     },
+    {
+        expr: {
+            op: "-",
+            lhs: {
+                op: "/",
+                lhs: 6,
+                rhs: 5,
+            },
+            rhs: {
+                op: "-",
+                lhs: 4,
+                rhs: 5,
+            },
+        },
+        expectedResult: 2,
+    },
 ];
 
 const testTable = TEST_CASES.map(({ expr, expectedResult }) => [
