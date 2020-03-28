@@ -27,6 +27,6 @@
     "lint": "eslint . --ext .ts,.js",
     "lintfix": "eslint . --ext .ts,.js --fix",
     "test": "jest",
-    "precommit": "yarn run lint && yarn run build && yarn run test"
+    "precommit": "npm run lint && npm run build && npm run test"
   }
 }
