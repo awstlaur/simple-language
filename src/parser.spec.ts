@@ -19,11 +19,23 @@ const TEST_CASES: TestCase[] = [
         expectedExpr: -1,
     },
     {
+        program: "((4))",
+        expectedExpr: 4,
+    },
+    {
         program: "(+ 0 0)",
         expectedExpr: {
             op: "+",
             lhs: 0,
             rhs: 0,
+        },
+    },
+    {
+        program: "( ((+) (3) ((4))) )",
+        expectedExpr: {
+            op: "+",
+            lhs: 3,
+            rhs: 4,
         },
     },
     {
@@ -44,6 +56,22 @@ const TEST_CASES: TestCase[] = [
     },
     {
         program: "(- (/ 6 5) (- 4 5))",
+        expectedExpr: {
+            op: "-",
+            lhs: {
+                op: "/",
+                lhs: 6,
+                rhs: 5,
+            },
+            rhs: {
+                op: "-",
+                lhs: 4,
+                rhs: 5,
+            },
+        },
+    },
+    {
+        program: "((- ((/ 6 5)) ((- 4 5))))",
         expectedExpr: {
             op: "-",
             lhs: {

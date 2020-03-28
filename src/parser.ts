@@ -4,12 +4,25 @@ const OPERATIONS = new Set(["+", "*", "-", "/"]);
 
 function assertOpIsValid(op: SExpression): asserts op is ArithOp {
     if (typeof op !== "string") {
-        throw new Error(`Expected operation to be a string, got ${op}`);
+        throw new Error(
+            `Expected operation to be a string, got ${typeof op} "${op}"`
+        );
     }
     if (OPERATIONS.has(op)) {
         return;
     }
     throw new Error(`Operation "${op}" is invalid`);
+}
+
+// "( ((+) (3) ((4))) )" -> "(+ 3 4)""
+function removeRedundantParens(sexpr: SExpression): SExpression {
+    if (typeof sexpr === "string" || sexpr instanceof String) {
+        return sexpr;
+    }
+    if (sexpr.length === 1) {
+        return removeRedundantParens(sexpr[0]);
+    }
+    return sexpr.map(removeRedundantParens);
 }
 
 function parseSExpr(sexpr: SExpression): ArithExpr {
@@ -20,6 +33,11 @@ function parseSExpr(sexpr: SExpression): ArithExpr {
         }
         return num;
     }
+
+    if (sexpr.length === 1) {
+        return parseSExpr(sexpr[0]);
+    }
+
     if (sexpr.length !== 3) {
         throw new Error("invalid sexpr length");
     }
@@ -39,6 +57,6 @@ export default class Parser {
             throw sexpr;
         }
 
-        return parseSExpr(sexpr);
+        return parseSExpr(removeRedundantParens(sexpr));
     }
 }
