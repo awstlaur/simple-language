@@ -14,6 +14,11 @@ to quit
 Only integers are supported. The arithmetic of `+`, `-`, and `*` directly match
 their JavaScript equivalents, while `/` returns the quotient via `Math.floor`.
 
+Division by `0` results in
+[`Number.POSITIVE_INFINITY`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/POSITIVE_INFINITY) or
+[`Number.NEGATIVE_INFINITY`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY),
+despite there being no language feature to define either Infinity directly.
+
 ## Examples
 ```
 $ npm run repl

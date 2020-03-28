@@ -50,6 +50,22 @@ const TEST_CASES: TestCase[] = [
         },
         expectedResult: 2,
     },
+    {
+        expr: {
+            op: "/",
+            lhs: 1,
+            rhs: 0,
+        },
+        expectedResult: Number.POSITIVE_INFINITY,
+    },
+    {
+        expr: {
+            op: "/",
+            lhs: -1,
+            rhs: 0,
+        },
+        expectedResult: Number.NEGATIVE_INFINITY,
+    },
 ];
 
 const testTable = TEST_CASES.map(({ expr, expectedResult }) => [
