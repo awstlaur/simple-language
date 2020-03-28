@@ -86,6 +86,22 @@ const TEST_CASES: TestCase[] = [
             },
         },
     },
+    {
+        program: "((- ((/ 612 543212)) ((- 4123 544432))))",
+        expectedExpr: {
+            op: "-",
+            lhs: {
+                op: "/",
+                lhs: 612,
+                rhs: 543212,
+            },
+            rhs: {
+                op: "-",
+                lhs: 4123,
+                rhs: 544432,
+            },
+        },
+    },
 ];
 
 const testTable = TEST_CASES.map(({ program, expectedExpr }) => [
