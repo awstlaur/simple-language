@@ -12,7 +12,7 @@ const TEST_CASES: TestCase[] = [
     },
     {
         program: "1",
-        expectedExpr: 1,
+        expectedExpr: 0,
     },
     {
         program: "-1",
