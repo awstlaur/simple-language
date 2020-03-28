@@ -13,6 +13,13 @@ function assertOpIsValid(op: SExpression): asserts op is ArithOp {
 }
 
 function parseSExpr(sexpr: SExpression): ArithExpr {
+    if (typeof sexpr === "string") {
+        const num = parseInt(sexpr, 10);
+        if (isNaN(num)) {
+            throw new Error(`${sexpr} is not a number`);
+        }
+        return num;
+    }
     if (sexpr.length !== 3) {
         throw new Error("invalid sexpr length");
     }
@@ -20,14 +27,8 @@ function parseSExpr(sexpr: SExpression): ArithExpr {
     const op = sexpr[0];
     assertOpIsValid(op);
 
-    const lhs =
-        typeof sexpr[1] === "string"
-            ? parseInt(sexpr[1], 10)
-            : parseSExpr(sexpr[1]);
-    const rhs =
-        typeof sexpr[2] === "string"
-            ? parseInt(sexpr[2], 10)
-            : parseSExpr(sexpr[2]);
+    const lhs = parseSExpr(sexpr[1]);
+    const rhs = parseSExpr(sexpr[2]);
     return { op, lhs, rhs };
 }
 

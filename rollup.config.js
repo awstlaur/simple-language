@@ -8,4 +8,5 @@ export default {
         format: "cjs",
     },
     plugins: [commonjs(), typescript()],
+    external: ["s-expression", "repl"],
 };

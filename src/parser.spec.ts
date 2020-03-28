@@ -7,6 +7,18 @@ type TestCase = {
 
 const TEST_CASES: TestCase[] = [
     {
+        program: "0",
+        expectedExpr: 0,
+    },
+    {
+        program: "1",
+        expectedExpr: 1,
+    },
+    {
+        program: "-1",
+        expectedExpr: -1,
+    },
+    {
         program: "(+ 0 0)",
         expectedExpr: {
             op: "+",
@@ -54,7 +66,12 @@ const testTable = TEST_CASES.map(({ program, expectedExpr }) => [
 ]);
 
 test.each(testTable)('.parse("%s")', (program, expectedExpr) => {
-    expect(Parser.parse(program as string)).toMatchObject(expectedExpr);
+    const expr = Parser.parse(program as string);
+    if (typeof expr === "number") {
+        expect(expr).toEqual(expectedExpr);
+        return;
+    }
+    expect(expr).toMatchObject(expectedExpr);
 });
 
 const ERROR_CASES = [
@@ -62,10 +79,10 @@ const ERROR_CASES = [
     "(0 0)",
     "(0 0 0 0)",
     "(+ 1 2 3)",
-    "0",
     "",
     "))",
     "(invalid_op s d)",
+    "(+ five six)",
 ];
 
 test.each(ERROR_CASES)('Error given "%s"', () => {
