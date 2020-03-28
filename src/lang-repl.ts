@@ -1,13 +1,16 @@
 import * as repl from "repl";
-import Parser, { ArithExpr } from "./parser";
+import Evaluator from "./evaluator";
+import Parser from "./parser";
 
 function evalArithExpr<C>(
     cmd: string,
     context: C,
     filename: string,
-    callback: (err: Error | null, result: ArithExpr) => void
+    callback: (err: Error | null, result: number) => void
 ): void {
-    callback(null, Parser.parse(cmd));
+    const parsed = Parser.parse(cmd);
+    const result = Evaluator.evaluate(parsed);
+    callback(null, result);
 }
 
 export default function startREPL(): void {

@@ -1,14 +1,5 @@
 import SParse, { SExpression } from "s-expression";
 
-export type ArithOp = "+" | "*";
-export type ArithExpr =
-    | {
-          op: ArithOp;
-          lhs: ArithExpr;
-          rhs: ArithExpr;
-      }
-    | number;
-
 function assertOpIsValid(op: SExpression): asserts op is ArithOp {
     if (typeof op !== "string") {
         throw new Error(`Expected operation to be a string, got ${op}`);

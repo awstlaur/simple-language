@@ -1,4 +1,4 @@
-import Parser, { ArithExpr } from "./parser";
+import Parser from "./parser";
 
 type TestCase = {
     program: string;
