@@ -1,9 +1,3 @@
-import Parser from "./parser";
+import startREPL from "./lang-repl";
 
-function logParse(program: string): void {
-    const output = JSON.stringify(Parser.parse(program));
-    console.log(program);
-    console.log(output);
-}
-
-logParse("(+ 1 2)");
+startREPL();
