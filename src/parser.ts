@@ -2,6 +2,8 @@ import SParse, { SExpression } from "s-expression";
 
 const OPERATIONS = new Set(["+", "*", "-", "/"]);
 
+const NUMBER_REGEX = /^-?[0-9]+$/;
+
 function assertOpIsValid(op: SExpression): asserts op is ArithOp {
     if (typeof op !== "string") {
         throw new Error(
@@ -28,8 +30,8 @@ function removeRedundantParens(sexpr: SExpression): SExpression {
 function parseSExpr(sexpr: SExpression): ArithExpr {
     if (typeof sexpr === "string") {
         const num = parseInt(sexpr, 10);
-        if (isNaN(num)) {
-            throw new Error(`${sexpr} is not a number`);
+        if (isNaN(num) || !NUMBER_REGEX.test(sexpr)) {
+            throw new Error(`${sexpr} is not an integer`);
         }
         return num;
     }

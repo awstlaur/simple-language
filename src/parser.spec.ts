@@ -111,8 +111,10 @@ const ERROR_CASES = [
     "))",
     "(invalid_op s d)",
     "(+ five six)",
+    "4.5",
+    "(+ 3.0 3.1)",
 ];
 
-test.each(ERROR_CASES)('Error given "%s"', () => {
-    expect(() => Parser.parse("()")).toThrowError();
+test.each(ERROR_CASES)('Error given "%s"', (x) => {
+    expect(() => Parser.parse(x)).toThrowError();
 });
